@@ -1,50 +1,23 @@
-package com.xiaoyingbo.lib_architecture.ui.page;
+package com.xiaoyingbo.lib_architecture.ui.page.dataBindingPage
 
-import android.util.SparseArray;
+import android.util.SparseArray
+import androidx.lifecycle.ViewModel
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
+class DataBindingConfig(
+    @JvmField val layout: Int,
+    @JvmField val vmVariableId: Int,
+    @JvmField val stateViewModel: ViewModel
+) {
+    @JvmField
+    val bindingParams = SparseArray<Any>()
 
-public class DataBindingConfig {
-
-    private final int layout;
-
-    private final int vmVariableId;
-
-    private final ViewModel stateViewModel;
-
-    private final SparseArray<Object> bindingParams = new SparseArray<>();
-
-    public DataBindingConfig(@NonNull Integer layout,
-                             @NonNull Integer vmVariableId,
-                             @NonNull ViewModel stateViewModel) {
-        this.layout = layout;
-        this.vmVariableId = vmVariableId;
-        this.stateViewModel = stateViewModel;
-    }
-
-    public int getLayout() {
-        return layout;
-    }
-
-    public int getVmVariableId() {
-        return vmVariableId;
-    }
-
-    public ViewModel getStateViewModel() {
-        return stateViewModel;
-    }
-
-    public SparseArray<Object> getBindingParams() {
-        return bindingParams;
-    }
-
-    public DataBindingConfig addBindingParam(@NonNull Integer variableId,
-                                             @NonNull Object object) {
-        if (bindingParams.get(variableId) == null) {
-            bindingParams.put(variableId, object);
+    fun addBindingParam(
+        variableId: Int,
+        any: Any
+    ): DataBindingConfig {
+        if (bindingParams[variableId] == null) {
+            bindingParams.put(variableId, any)
         }
-        return this;
+        return this
     }
 }
-

@@ -98,12 +98,6 @@ dependencies {
     // 可选 - 对 LiveData 的 ReactiveStreams 支持
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.5.1")
 
-    //MviDispatcher:唯一信息源头
-    api 'com.kunminx.arch:mvi-dispatch:7.4.0-beta'
-
-    //防止livedata数据倒灌
-    api 'com.kunminx.arch:unpeek-livedata:7.8.0'
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

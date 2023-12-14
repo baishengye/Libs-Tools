@@ -1,6 +1,6 @@
-package com.xiaoyingbo.lib_architecture.ui.page;
+package com.xiaoyingbo.lib_architecture.ui.page.basePage
 
-import androidx.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding
+import com.xiaoyingbo.lib_architecture.ui.page.dataBindingPage.DataBindingPopupWindow
 
-public class BasePopupWindow<B extends ViewDataBinding> extends DataBindingPopupWindow<B> {
-}
+class BasePopupWindow<B : ViewDataBinding> : DataBindingPopupWindow<B>()

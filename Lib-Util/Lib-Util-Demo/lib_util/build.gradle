@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 32
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        def versionName = "0.0.1" // 当前版本依赖库版本号，这个jitpack不会使用到，只是我们开发者自己查看
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release // 表示发布 release（jitpack 都不会使用到）
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.baishengye.lib_util' // 这个是依赖库的组 id
+                artifactId = 'lib_util' // 依赖库的名称（jitpack 都不会使用到）
+                version = versionName
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+
+    //mmkv
+    implementation 'com.tencent:mmkv:1.2.14'
+
+    //沉浸式
+    // 基础依赖包，必须要依赖
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    // kotlin扩展（可选）
+    api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'cn.hutool:hutool-all:5.8.11'
+}

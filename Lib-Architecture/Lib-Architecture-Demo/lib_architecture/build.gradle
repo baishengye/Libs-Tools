@@ -1,0 +1,110 @@
+//region plugin的引入顺序是有规定的,需严格按照以下规则
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
+//endregion
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 32
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        def versionName = "0.0.3" // 当前版本依赖库版本号，这个jitpack不会使用到，只是我们开发者自己查看
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release // 表示发布 release（jitpack 都不会使用到）
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.baishengye.lib_architecture' // 这个是依赖库的组 id
+                artifactId = 'lib_architecture' // 依赖库的名称（jitpack 都不会使用到）
+                version = versionName
+            }
+        }
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation project(path: ':lib_util')
+
+    api 'androidx.core:core:1.8.0'
+    api 'androidx.appcompat:appcompat:1.5.1'
+    api 'com.google.android.material:material:1.6.1'
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api "androidx.multidex:multidex:2.0.1"
+
+    //navigation相关
+    api 'androidx.navigation:navigation-runtime:2.5.2'
+    api 'androidx.navigation:navigation-fragment:2.5.2'
+    api 'androidx.navigation:navigation-ui:2.5.2'
+
+    //lifecycle相关
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata:2.5.1")
+    // 仅Lifecycles (没有 ViewModel 或 LiveData)
+    implementation("androidx.lifecycle:lifecycle-runtime:2.5.1")
+    // 为 ViewModel 保存状态模块
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1")
+    // 或者 - 如果使用 Java8，请使用以下代码代替生命周期编译器
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.5.1")
+    // 可选 - 在服务中实现 LifecycleOwner 的助手
+    implementation("androidx.lifecycle:lifecycle-service:2.5.1")
+    // 可选 - ProcessLifecycleOwner 为整个应用程序进程提供生命周期
+    implementation("androidx.lifecycle:lifecycle-process:2.5.1")
+    // 可选 - 对 LiveData 的 ReactiveStreams 支持
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.5.1")
+
+    //MviDispatcher:唯一信息源头
+    api 'com.kunminx.arch:mvi-dispatch:7.4.0-beta'
+
+    //防止livedata数据倒灌
+    api 'com.kunminx.arch:unpeek-livedata:7.8.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

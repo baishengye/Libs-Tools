@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 32
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":lib_util")
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    api "com.squareup.okhttp3:okhttp:4.10.0" //okttp依赖
+    api "com.github.franmontiel:PersistentCookieJar:1.0.1" //cookie依赖
+    api "com.google.code.gson:gson:2.9.1"
+    //retrofit2
+    api "com.squareup.retrofit:retrofit:1.9.0"
+    api "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //rxjava库
+    api "io.reactivex.rxjava3:rxjava:3.1.0"
+    api "io.reactivex.rxjava3:rxandroid:3.0.0"
+    api 'com.uber.autodispose2:autodispose-android:2.1.1'
+    api 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1'
+
+    // okhttp log
+    api "com.squareup.okhttp3:logging-interceptor:4.10.0"
+
+    //网络检查
+    debugApi                  "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseApi                "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

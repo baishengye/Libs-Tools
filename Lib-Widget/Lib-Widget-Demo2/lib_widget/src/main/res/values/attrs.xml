@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标题栏-->
+    <declare-styleable name="BSYTitleBar">
+        <!-- 标题栏背景 -->
+        <attr name="android:background" />
+
+        <!-- 标题栏样式 -->
+        <attr name="barStyle">
+            <enum name="light" value="0x10" />
+            <enum name="night" value="0x20" />
+            <enum name="transparent" value="0x30" />
+            <enum name="ripple" value="0x40" />
+        </attr>
+
+        <!-- 子控件垂直内间距（可用于调整标题栏自适应的高度） -->
+        <attr name="childVerticalPadding" format="dimension|reference" />
+
+        <!-- 标题 -->
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="reference|color" />
+        <attr name="titleSize" format="dimension|reference" />
+        <attr name="titleGravity">
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="center" value="0x11" />
+            <flag name="start" value="0x00800003" />
+            <flag name="end" value="0x00800005" />
+        </attr>
+        <attr name="titleStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="titleIcon" format="reference" />
+        <attr name="titleIconWidth" format="dimension|reference" />
+        <attr name="titleIconHeight" format="dimension|reference" />
+        <attr name="titleIconPadding" format="dimension|reference" />
+        <attr name="titleIconTint" format="color|reference" />
+        <attr name="titleIconGravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="start" value="0x00800003" />
+            <flag name="end" value="0x00800005" />
+        </attr>
+        <attr name="titleHorizontalPadding" format="dimension|reference" />
+
+        <!-- 左标题 -->
+        <attr name="leftTitle" format="string"/>
+        <attr name="leftTitleColor" format="reference|color" />
+        <attr name="leftTitleSize" format="dimension|reference" />
+        <attr name="leftTitleStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="leftIcon" format="reference" />
+        <attr name="leftIconWidth" format="dimension|reference" />
+        <attr name="leftIconHeight" format="dimension|reference" />
+        <attr name="leftIconPadding" format="dimension|reference" />
+        <attr name="leftIconTint" format="color" />
+        <attr name="leftIconGravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="start" value="0x00800003" />
+            <flag name="end" value="0x00800005" />
+        </attr>
+        <attr name="leftBackground" format="reference|color" />
+        <attr name="leftForeground" format="reference|color" />
+        <attr name="leftHorizontalPadding" format="dimension|reference" />
+
+        <!-- 右标题 -->
+        <attr name="rightTitle" format="string" />
+        <attr name="rightTitleColor" format="reference|color" />
+        <attr name="rightTitleSize" format="dimension|reference" />
+        <attr name="rightTitleStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="rightIcon" format="reference" />
+        <attr name="rightIconWidth" format="dimension|reference" />
+        <attr name="rightIconHeight" format="dimension|reference" />
+        <attr name="rightIconPadding" format="dimension|reference" />
+        <attr name="rightIconTint" format="color" />
+        <attr name="rightIconGravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="start" value="0x00800003" />
+            <flag name="end" value="0x00800005" />
+        </attr>
+        <attr name="rightBackground" format="reference|color" />
+        <attr name="rightForeground" format="reference|color" />
+        <attr name="rightHorizontalPadding" format="dimension|reference" />
+
+        <!-- 分割线 -->
+        <attr name="lineVisible" format="boolean" />
+        <attr name="lineDrawable" format="reference|color" />
+        <attr name="lineSize" format="dimension|reference" />
+
+    </declare-styleable>
+
+
+    <!-- 正则表达式编辑框 -->
+    <declare-styleable name="BSYRegexEditText">
+        <!-- 正则输入限制 -->
+        <attr name="inputRegex" format="string" />
+        <!-- 常用正则类型 -->
+        <attr name="regexType" format="enum">
+            <!-- 手机号（只能以 1 开头）-->
+            <enum name="mobile" value="0x01" />
+            <!-- 中文（普通的中文字符）-->
+            <enum name="chinese" value="0x02" />
+            <!-- 英文（大写和小写的英文）-->
+            <enum name="english" value="0x03" />
+            <!-- 数字（只允许输入纯数字）-->
+            <enum name="number" value="0x04" />
+            <!-- 整数（非 0 开头的数字）-->
+            <enum name="count" value="0x05" />
+            <!-- 用户名（中文、英文、数字）-->
+            <enum name="name" value="0x06" />
+            <!-- 非空格字符 -->
+            <enum name="nonnull" value="0x07" />
+        </attr>
+        <!--编辑框的作用-->
+        <attr name="editTextRole" format="enum">
+            <enum name="phone" value="0x03"/>
+            <enum name="email" value="0x04"/>
+            <enum name="normal" value="0x05"/>
+            <enum name="username" value="0x06"/>
+            <enum name="code" value="0x07"/>
+        </attr>
+        <attr name="text_input_layout_id" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYClearEditText">
+        <attr name="clearIcon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYTextInputLayout">
+        <attr name="error_text" format="reference|string"/>
+        <attr name="error_color" format="reference|color"/>
+        <attr name="success_text" format="reference|string"/>
+        <attr name="success_color" format="reference|color"/>
+    </declare-styleable>
+
+    <!-- 密码编辑框 -->
+    <declare-styleable name="BSYPasswordEditText">
+        <!--密码编辑框的作用-->
+        <attr name="passwordEditTextRole" format="enum">
+            <!--密码-->
+            <enum name="password" value="0x01"/>
+            <!--确认密码-->
+            <enum name="passwordCompare" value="0x02"/>
+        </attr>
+        <attr name="another_password_view_id" format="reference"/>
+    </declare-styleable>
+
+    <!-- 支持限定 Drawable 大小的 TextView -->
+    <declare-styleable name="BSYDrawableTextView">
+        <!-- Drawable 宽度 -->
+        <attr name="drawableWidth" format="dimension|reference" />
+        <!-- Drawable 高度 -->
+        <attr name="drawableHeight" format="dimension|reference" />
+    </declare-styleable>
+
+    <!--播放暂停按钮-->
+    <declare-styleable name="BSYPlayButton">
+        <!-- 线条颜色 -->
+        <attr name="pb_lineColor" format="color|reference" />
+        <!-- 线条大小 -->
+        <attr name="pb_lineSize" format="integer|reference" />
+        <!-- 动画时间 -->
+        <attr name="pb_animDuration" format="integer|reference" />
+    </declare-styleable>
+
+    <!-- 带提交动画按钮 -->
+    <declare-styleable name="BSYSubmitButton">
+        <!-- 进度按钮颜色 -->
+        <attr name="progressColor" format="color|reference" />
+        <!-- 成功按钮颜色 -->
+        <attr name="succeedColor" format="color|reference" />
+        <!-- 出错按钮颜色 -->
+        <attr name="errorColor" format="color|reference" />
+        <!-- 进度条样式 -->
+        <attr name="progressStyle" format="enum">
+            <!-- 无进度 -->
+            <enum name="loading" value="0x00" />
+            <!-- 带进度 -->
+            <enum name="progress" value="0x01" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 倾斜的 TextView -->
+    <declare-styleable name="BSYSlantedTextView">
+        <attr name="android:text" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:textStyle" />
+        <attr name="android:gravity" />
+        <attr name="android:colorBackground" />
+        <attr name="android:paddingVertical" />
+        <attr name="android:paddingHorizontal" />
+        <!-- 显示成三角形 -->
+        <attr name="triangle" format="boolean" />
+    </declare-styleable>
+
+    <!-- 缩放的 ImageView -->
+    <declare-styleable name="BSYScaleImageView">
+        <!-- 缩放比例 -->
+        <attr name="scaleRatio" format="float|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BSYCountdownTextView">
+        <attr name="countdown_total_time" format="integer|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYCollapseLayout">
+        <attr name="collapseOrientation">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+        <attr name="collapseMode">
+            <enum name="pullout" value="0"/>
+            <enum name="laydown" value="1"/>
+        </attr>
+        <attr name="state">
+            <enum name="open" value="0"/>
+            <enum name="close" value="1"/>
+        </attr>
+        <attr name="collapseDuration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYTextViewVertical">
+        <attr name="v_text" format="string" />
+        <attr name="v_textSize" format="dimension" />
+        <attr name="v_textColor" format="color" />
+        <attr name="v_start" format="enum">
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="v_line" format="enum">
+            <enum name="none" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="v_lineWidth" format="dimension" />
+        <attr name="v_lineColor" format="color" />
+        <attr name="v_textVerticalMargin" format="dimension" />
+        <attr name="v_textHorizontalMargin" format="dimension" />
+        <attr name="v_cutChars" format="string" />
+        <attr name="v_line2TextMargin" format="dimension" />
+    </declare-styleable>
+
+    <!-- 设置栏两边都是文字 -->
+    <declare-styleable name="BSYSettingTextBar">
+        <!-- 左边 -->
+        <attr name="settingTextBar_leftText" format="string"/>
+        <attr name="settingTextBar_leftTextColor" format="color" />
+        <attr name="settingTextBar_leftTextSize" format="dimension" />
+        <attr name="settingTextBar_leftTextHint" format="string"/>
+        <attr name="settingTextBar_leftDrawable" format="reference" />
+        <attr name="settingTextBar_leftDrawablePadding" format="dimension" />
+        <attr name="settingTextBar_leftDrawableSize" format="dimension" />
+        <attr name="settingTextBar_leftDrawableTint" format="color" />
+        <!-- 右边 -->
+        <attr name="settingTextBar_rightText" format="string" />
+        <attr name="settingTextBar_rightTextColor" format="color" />
+        <attr name="settingTextBar_rightTextSize" format="dimension" />
+        <attr name="settingTextBar_rightTextHint" format="string"/>
+        <attr name="settingTextBar_rightDrawable" format="reference" />
+        <attr name="settingTextBar_rightDrawablePadding" format="dimension" />
+        <attr name="settingTextBar_rightDrawableSize" format="dimension" />
+        <attr name="settingTextBar_rightDrawableTint" format="color" />
+        <!-- 分割线 -->
+        <attr name="settingTextBar_lineVisible" format="boolean" />
+        <attr name="settingTextBar_lineDrawable" format="reference|color" />
+        <attr name="settingTextBar_lineSize" format="dimension" />
+        <attr name="settingTextBar_lineMargin" format="dimension" />
+    </declare-styleable>
+
+    <!-- 设置栏 -->
+    <declare-styleable name="BSYSettingSwitchBar">
+        <!-- 左边 -->
+        <attr name="settingSwitchBar_leftText" format="string"/>
+        <attr name="settingSwitchBar_leftTextColor" format="color" />
+        <attr name="settingSwitchBar_leftTextSize" format="dimension" />
+        <attr name="settingSwitchBar_leftTextHint" format="string"/>
+        <attr name="settingSwitchBar_leftDrawable" format="reference" />
+        <attr name="settingSwitchBar_leftDrawablePadding" format="dimension" />
+        <attr name="settingSwitchBar_leftDrawableSize" format="dimension" />
+        <attr name="settingSwitchBar_leftDrawableTint" format="color" />
+        <!-- 右边 -->
+        <attr name="settingSwitchBar_shadow_radius" format="reference|dimension"/>
+        <attr name="settingSwitchBar_shadow_offset" format="reference|dimension"/>
+        <attr name="settingSwitchBar_shadow_color" format="reference|color"/>
+        <attr name="settingSwitchBar_uncheck_color" format="reference|color"/>
+        <attr name="settingSwitchBar_checked_color" format="reference|color"/>
+
+        <attr name="settingSwitchBar_border_width" format="reference|dimension"/>
+        <attr name="settingSwitchBar_checkline_color" format="reference|color"/>
+        <attr name="settingSwitchBar_checkline_width" format="reference|dimension"/>
+        <attr name="settingSwitchBar_uncheckcircle_color" format="reference|color"/>
+        <attr name="settingSwitchBar_uncheckcircle_width" format="reference|dimension"/>
+        <attr name="settingSwitchBar_uncheckcircle_radius" format="reference|dimension"/>
+
+        <attr name="settingSwitchBar_checked" format="reference|boolean"/>
+        <attr name="settingSwitchBar_shadow_effect" format="reference|boolean"/>
+        <attr name="settingSwitchBar_effect_duration" format="reference|integer"/>
+        <attr name="settingSwitchBar_button_color" format="reference|color"/>
+        <attr name="settingSwitchBar_show_indicator" format="reference|boolean"/>
+        <attr name="settingSwitchBar_background" format="reference|color"/>
+        <attr name="settingSwitchBar_enable_effect" format="reference|boolean"/>
+
+        <attr name="settingSwitchBar_checkedbutton_color" format="reference|color"/>
+        <attr name="settingSwitchBar_uncheckbutton_color" format="reference|color"/>
+        <attr name="settingSwitchBar_buttonRadiusScale" format="reference|float"/>
+        <!-- 分割线 -->
+        <attr name="settingSwitchBar_lineVisible" format="boolean" />
+        <attr name="settingSwitchBar_lineDrawable" format="reference|color" />
+        <attr name="settingSwitchBar_lineSize" format="dimension" />
+        <attr name="settingSwitchBar_lineMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="BSYSwitchButton">
+        <attr name="switch_shadow_effect" format="reference|boolean"/>
+        <attr name="switch_shadow_radius" format="reference|dimension"/>
+        <attr name="switch_shadow_offset" format="reference|dimension"/>
+        <attr name="switch_shadow_color" format="reference|color"/>
+        <attr name="switch_uncheck_color" format="reference|color"/>
+        <attr name="switch_checked_color" format="reference|color"/>
+
+        <attr name="switch_border_width" format="reference|dimension"/>
+        <attr name="switch_checkline_color" format="reference|color"/>
+        <attr name="switch_checkline_width" format="reference|dimension"/>
+        <attr name="switch_uncheckcircle_color" format="reference|color"/>
+        <attr name="switch_uncheckcircle_width" format="reference|dimension"/>
+        <attr name="switch_uncheckcircle_radius" format="reference|dimension"/>
+
+        <attr name="switch_checked" format="reference|boolean"/>
+        <attr name="switch_effect_duration" format="reference|integer"/>
+        <attr name="switch_button_color" format="reference|color"/>
+        <attr name="switch_show_indicator" format="reference|boolean"/>
+        <attr name="switch_background" format="reference|color"/>
+        <attr name="switch_enable_effect" format="reference|boolean"/>
+
+        <attr name="switch_checkedbutton_color" format="reference|color"/>
+        <attr name="switch_uncheckbutton_color" format="reference|color"/>
+        <attr name="switch_buttonRadiusScale" format="reference|float"/>
+
+    </declare-styleable>
+
+</resources>

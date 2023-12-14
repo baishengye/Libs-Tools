@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BSYIconView">
+        <attr name="icv_alibaba_icon_font_path" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYRoundelMenuLayout">
+        <attr name="rml_centerColor" format="color|reference"/>
+        <attr name="rml_roundColor" format="color|reference"/>
+        <attr name="rml_collapsedRadius" format="dimension|reference"/>
+        <attr name="rml_expandedRadius" format="dimension|reference"/>
+        <attr name="rml_duration" format="integer"/>
+        <attr name="rml_item_anim_delay" format="integer"/>
+        <attr name="rml_item_width" format="dimension|reference"/>
+        <attr name="rml_center_drawable" format="reference"/>
+        <attr name="rml_alibaba_icon_font_path" format="string|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYSubmitView">
+        <attr name="sv_bindEditText1" format="reference" />
+        <attr name="sv_bindEditText2" format="reference" />
+        <attr name="sv_bindEditText3" format="reference" />
+        <attr name="sv_bindEditText4" format="reference" />
+        <attr name="sv_bindEditText5" format="reference" />
+        <attr name="sv_bindEditText6" format="reference" />
+        <attr name="sv_alibaba_icon_font_path" format="string|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYInputView">
+        <attr name="iv_icon_size" format="reference|dimension"/>
+        <attr name="iv_icon_margin" format="dimension|reference"/>
+        <attr name="iv_et_margin_horizontal" format="reference|dimension"/>
+        <attr name="iv_et_text_color" format="color|reference"/>
+        <attr name="iv_et_hint_text_color" format="color|reference"/>
+        <attr name="iv_et_text_size" format="reference|dimension"/>
+        <attr name="iv_icon_color_normal" format="color|reference"/>
+        <attr name="iv_icon_color_focus" format="color|reference"/>
+        <attr name="iv_alibaba_icon_font_path" format="string|reference"/>
+        <attr name="iv_et_hint_text" format="string|reference" />
+        <attr name="iv_et_input_type" format="reference|integer">
+            <flag name="text" value="0x00000001" />
+            <flag name="number" value="0x00000002" />
+            <flag name="textEmailAddress" value="0x00000021" />
+            <flag name="textPassword" value="0x00000081" />
+            <flag name="phone" value="0x00000003" />
+        </attr>
+        <attr name="iv_et_text" format="reference|string"/>
+        <attr name="iv_type" format="reference|integer">
+            <flag name="email" value="0x00000001" />
+            <flag name="phone" value="0x00000002" />
+            <flag name="capture" value="0x00000003" />
+            <flag name="password" value="0x00000004" />
+        </attr>
+        <attr name="iv_color_wrong" format="reference|color"/>
+        <attr name="iv_remind_wrong" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYNormalInputView">
+        <attr name="normal_left_icon" format="string|reference"/>
+        <attr name="normal_right_icon" format="string|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYPasswordInputView">
+        <attr name="password_password_icon" format="reference|string"/>
+        <attr name="password_delete_icon" format="reference|string"/>
+        <attr name="password_eye_icon" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="BSYCountDownTimerButton">
+        <attr name="timer_button_describe_normal" format="reference|string"/>
+        <attr name="timer_button_describe_down" format="reference|string"/>
+        <attr name="timer_button_color_down" format="reference|color"/>
+        <attr name="timer_button_color_normal" format="reference|color"/>
+    </declare-styleable>
+</resources>

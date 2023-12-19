@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment
 abstract class DataBindingFragment<VB : ViewDataBinding> : Fragment() {
     /**此Fragment所依附的Activity */
     private var _activity: AppCompatActivity? = null
-    protected val activity:AppCompatActivity = _activity!!
+    protected val activity:AppCompatActivity by lazy { _activity!! }
 
     private var _binding: VB? = null
-    protected val binding:VB = _binding!!
+    protected val binding:VB by lazy { _binding!! }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

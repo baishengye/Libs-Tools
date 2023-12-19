@@ -13,10 +13,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 abstract class DataBindingBottomSheetDialogFragment<VB : ViewDataBinding> : BottomSheetDialogFragment() {
     /**此Fragment所依附的Activity */
     private var _activity: AppCompatActivity? = null
-    protected val activity:AppCompatActivity = _activity!!
+    protected val activity:AppCompatActivity by lazy { _activity!! }
 
     private var _binding: VB? = null
-    protected val binding:VB = _binding!!
+    protected val binding:VB by lazy { _binding!! }
 
     /**当activity和fragment建立联系时调用 */
     override fun onAttach(context: Context) {

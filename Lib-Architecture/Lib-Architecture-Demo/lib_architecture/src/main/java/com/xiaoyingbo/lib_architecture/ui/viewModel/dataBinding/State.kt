@@ -1,4 +1,4 @@
-package com.xiaoyingbo.lib_architecture.ui.viewModel
+package com.xiaoyingbo.lib_architecture.ui.viewModel.dataBinding
 
 import androidx.databinding.ObservableField
 

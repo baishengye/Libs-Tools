@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
  * dataBinding基类 */
 abstract class DataBindingActivity<VB : ViewDataBinding> : AppCompatActivity() {
     private var _binding : VB? = null
-    protected val binding:VB = _binding!!
+    protected val binding:VB by lazy { _binding!! }
 
     /**
      * 初始化要用到的viewModel */

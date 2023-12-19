@@ -26,20 +26,10 @@ abstract class BaseActivity<VB : ViewDataBinding> : DataBindingActivity<VB>() {
 
     override fun initViewModel() {
         networkStateCallback?.let {
-            mNetworkStateManager = getInstance(it)
-            lifecycle.addObserver(mNetworkStateManager!!)
+            mNetworkStateManager = NetworkStateManager.getInstance(it).apply {
+                lifecycle.addObserver(this@apply)
+            }
         }
-    }
-
-    protected fun removeObserver() {
-        networkStateCallback?.let {
-            lifecycle.removeObserver(mNetworkStateManager!!)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        removeObserver()
     }
 
     protected fun <T : ViewModel> getActivityScopeViewModel(modelClass: Class<T>): T {

@@ -27,20 +27,10 @@ abstract class BaseDialogFragment<B : ViewDataBinding> : DataBindingDialogFragme
 
     override fun initViewModel() {
         networkStateCallback?.let {
-            mNetworkStateManager = NetworkStateManager.getInstance(it)
-            viewLifecycleOwner.lifecycle.addObserver(mNetworkStateManager!!)
+            mNetworkStateManager = NetworkStateManager.getInstance(it).apply {
+                viewLifecycleOwner.lifecycle.addObserver(this@apply)
+            }
         }
-    }
-
-    protected fun removeObserver() {
-        networkStateCallback?.let {
-            viewLifecycleOwner.lifecycle.removeObserver(mNetworkStateManager!!)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        removeObserver()
     }
 
     protected fun nav(): NavController {

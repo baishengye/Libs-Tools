@@ -25,17 +25,11 @@ abstract class BaseFragment<B : ViewDataBinding> : DataBindingFragment<B>() {
                 activity.applicationContext.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
 
     override fun initViewModel() {
-        mNetworkStateManager = getInstance(networkStateCallback!!)
-        viewLifecycleOwner.lifecycle.addObserver(mNetworkStateManager!!)
-    }
-
-    override fun onDestroyView() {
-        removeObserver()
-        super.onDestroyView()
-    }
-
-    protected fun removeObserver() {
-        viewLifecycleOwner.lifecycle.removeObserver(mNetworkStateManager!!)
+        networkStateCallback?.let {
+            mNetworkStateManager = NetworkStateManager.getInstance(it).apply {
+                viewLifecycleOwner.lifecycle.addObserver(this@apply)
+            }
+        }
     }
 
     protected fun nav(): NavController {

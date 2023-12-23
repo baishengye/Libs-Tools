@@ -72,8 +72,6 @@ class RequestHandler() : IRequestHandler {
         }
 
         // 打印这个 Json 或者文本
-
-        // 打印这个 Json 或者文本
         EasyLog.printJson(httpRequest, text)
 
         if (String::class.java == type) {

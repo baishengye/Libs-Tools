@@ -2,20 +2,13 @@ package com.xiaoyingbo.lib_framework_demo
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.xiaoyingbo.lib_architecture.data.response.networkState.NetworkStateCallback
 import com.xiaoyingbo.lib_architecture.ui.page.basePage.BaseActivity
 import com.xiaoyingbo.lib_architecture.ui.page.dataBindingPage.DataBindingConfig
 import com.xiaoyingbo.lib_architecture.ui.viewModel.dataBinding.StateHolder
+import com.xiaoyingbo.lib_architecture.ui.viewModel.mvi.FlowExtensions.observeWithLifecycle
 import com.xiaoyingbo.lib_framework_demo.databinding.ActivityMainBinding
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val networkStateCallback: NetworkStateCallback
@@ -55,7 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
         }
-        
+
         mMainRequester.effect.observeWithLifecycle(this){
             when(it){
                 is MainRequester.MainMEffect.ToastMState->{
@@ -67,14 +60,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.IVFemale.setOnClickListener {
             mMainRequester.sendAction(MainRequester.MainIAction.GetFemaleIAction)
         }
-    }
-
-    fun <T> Flow<T>.observeWithLifecycle(
-        activity: FragmentActivity,
-        minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
-        collector: FlowCollector<T>
-    ): Job = activity.lifecycleScope.launch {
-        flowWithLifecycle(activity.lifecycle, minActiveState).collect(collector)
     }
 
     class MainUIStates:StateHolder(){}

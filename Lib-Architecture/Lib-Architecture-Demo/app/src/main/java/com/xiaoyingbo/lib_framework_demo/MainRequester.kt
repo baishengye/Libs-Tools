@@ -37,23 +37,32 @@ class MainRequester :
     override fun handleAction(action: MainIAction, currentState: MainMState?) {
         when (action) {
             is MainIAction.GetFemaleIAction -> {
-                requestFlow()
-                    .onStart {
+                requestFlow<MainMState>(
+                    request = {
+                        it.emit(MainMState.FemaleMState(HttpUtil.instance.getFemale(this@MainRequester)))
+                    },
+                    requestStart = {
                         emitState(MainMState.LoadingMState(true))
-                    }.catch { ex ->
+                    },
+                    requestEach = {
+                        emitState(MainMState.LoadingMState(false))
+                        emitState(it)
+                        emitEffect(MainMEffect.ToastMState("请求成功"))
+                    },
+                    requestCompletion = { _, _ ->
+
+                    },
+                    requestEmpty = {
+
+                    },
+                    requestException = { _, _ ->
                         emitState(MainMState.LoadingMState(false))
                         emitEffect(MainMEffect.ToastMState("失败"))
-                    }.onEach { result ->
-                        emitState(MainMState.LoadingMState(false))
-                        emitState(result)
-                        emitEffect(MainMEffect.ToastMState("请求成功"))
-                    }.launchIn(viewModelScope)
+                    }
+                )
 
             }
         }
     }
 
-    fun requestFlow() = flow {
-        emit(MainMState.FemaleMState(HttpUtil.instance.getFemale(this@MainRequester)))
-    }.flowOn(Dispatchers.IO)
 }

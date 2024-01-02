@@ -5,9 +5,13 @@ import com.hjq.http.EasyConfig
 import com.hjq.http.EasyHttp
 import com.hjq.http.listener.OnHttpListener
 import com.hjq.http.model.ResponseClass
+import com.xiaoyingbo.lib_architecture.data.response.DataResult
+import com.xiaoyingbo.lib_architecture.data.response.ResponseStatus
+import com.xiaoyingbo.lib_architecture.data.response.ResultSource
 import okhttp3.OkHttpClient
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
+import kotlin.jvm.Throws
 
 
 class HttpUtil {
@@ -27,11 +31,13 @@ class HttpUtil {
             .into()
     }
 
+    @Throws(Exception::class)
     suspend fun getFemale(lifecycleOwner: LifecycleOwner):FemaleApi.Female? = suspendCoroutine {con->
         EasyHttp.post(lifecycleOwner)
             .api(FemaleApi())
             .request(object : OnHttpListener<FemaleApi.Female>{
                 override fun onHttpSuccess(result: FemaleApi.Female) {
+                    DataResult<FemaleApi.Female>(result, ResponseStatus("","成功",true,ResultSource.NETWORK))
                     con.resume(result)
                 }
 

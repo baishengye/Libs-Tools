@@ -7,22 +7,25 @@ package com.xiaoyingbo.lib_architecture.data.response
  * Create by KunMinX at 19/10/11
  */
 data class ResponseStatus(
+    var responseCode:String? = "",
     var responseMsg: String? = "",
     var isSuccess:Boolean = true,
     @ResultSource var source:Int = ResultSource.NETWORK
 ) {
-    constructor(): this("", true, ResultSource.NETWORK)
-    constructor(success: Boolean, @ResultSource source: Int) : this("", success, source)
-
     @JvmOverloads
     constructor(
+        responseCode: String,
         responseMsg: String?,
         success: Boolean,
+        defaultResponseCode: String = "",
         defaultResponseMsg: String = "",
         @ResultSource source: Int = ResultSource.NETWORK
-    ):this(responseMsg,success,source) {
+    ):this(responseCode,responseMsg,success,source) {
         if (success && responseMsg == null) {
             this.responseMsg = defaultResponseMsg
+        }
+        if(success && responseCode == null){
+            this.responseCode = defaultResponseCode
         }
     }
 }

@@ -13,8 +13,4 @@ data class DataResult<T>(
     val responseStatus: ResponseStatus
 ) {
     constructor(entity: T):this(entity,ResponseStatus())
-
-    interface Result<T> {
-        fun onResult(dataResult: DataResult<T>)
-    }
 }

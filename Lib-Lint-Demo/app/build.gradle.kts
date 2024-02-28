@@ -34,6 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    lint {
+        checkDependencies = true
+        // Produce report for CI:
+        // https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/sarif-support-for-code-scanning
+        sarifOutput = file("../lint-results.sarif")
+        textReport = true
+    }
 }
 
 dependencies {
@@ -45,4 +52,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(project(":lib_lint"))
 }
